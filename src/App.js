@@ -31,10 +31,6 @@ class App extends Component{
         );
     }
 
-    onLoadMore = () => {
-
-    };
-
     onModal = (img = '', tag = '') => {
         this.setState({
             isOpen: !this.state.isOpen,
@@ -55,7 +51,6 @@ class App extends Component{
         axios.get(`https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=${searchValue}&page=${page}&per_page=12&key=${key}`)
             .then((response) => {
                 // handle success
-                console.log(response);
                 if (response.status === 200) {
                     response.data.hits.map((item) => {
                         this.setState({
