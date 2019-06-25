@@ -48,7 +48,7 @@ class App extends Component{
             });
         }
         const {page, searchValue} = this.state;
-        axios.get(`https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=${searchValue}&page=${page}&per_page=12&key=${key}`)
+        axios.get(`https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=${(!load) ? value : searchValue}&page=${(!load) ? 1 : page}&per_page=12&key=${key}`)
             .then((response) => {
                 // handle success
                 if (response.status === 200) {
@@ -68,9 +68,6 @@ class App extends Component{
                 // handle error
                 console.log(error);
             })
-            .finally(() => {
-                // always executed
-            });
     }
 }
 
