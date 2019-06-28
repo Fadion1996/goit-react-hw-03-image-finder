@@ -5,6 +5,7 @@ import axios from 'axios';
 import './App.css'
 
 const key = '12551544-5d6e1dc51f03a64bc157d63ba';
+const imageUrl = 'https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=';
 
 class App extends Component{
     state = {
@@ -48,9 +49,8 @@ class App extends Component{
             });
         }
         const {page, searchValue} = this.state;
-        axios.get(`https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=${(!load) ? value : searchValue}&page=${(!load) ? 1 : page}&per_page=12&key=${key}`)
+        axios.get(imageUrl + `${(!load) ? value : searchValue}&page=${(!load) ? 1 : page}&per_page=12&key=${key}`)
             .then((response) => {
-                // handle success
                 if (response.status === 200) {
                     response.data.hits.map((item) => {
                         this.setState({
@@ -65,7 +65,6 @@ class App extends Component{
 
             })
             .catch((error) => {
-                // handle error
                 console.log(error);
             })
     }
