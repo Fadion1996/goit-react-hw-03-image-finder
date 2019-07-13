@@ -14,3 +14,13 @@
     top: 0;
     background-color: rgba(0, 0, 0, 0.5);
 }
+
+.overlay:after {
+    content: "";
+    position: absolute;
+    top: 0.8rem;
+    right: 0.8rem;
+    width: 2em;
+    height: 2em;
+    background: url(/static/media/close.35a6ccb5.svg);
+}

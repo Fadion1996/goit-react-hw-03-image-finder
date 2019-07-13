@@ -21,20 +21,9 @@ class App extends Component{
         this.onSubmit();
     }
 
-    render () {
-        return (
-            <div className="App">
-                <SearchForm onSubmit={this.onSubmit}/>
-                <Gallery photos={this.state.photos} isOpen={this.onModal}/>
-                {(this.state.photos) && <LoadMore loadMore={()=> this.onSubmit('', true)}/>}
-                {(this.state.isOpen) && <Modal image={this.state.image} tags={this.state.tag} isOpen={this.onModal}/>}
-            </div>
-        );
-    }
-
-    onModal = (img = '', tag = '') => {
+    onModal = (img = '', tag = '', isOpen = false) => {
         this.setState({
-            isOpen: !this.state.isOpen,
+            isOpen: isOpen,
             image: img,
             tag: tag,
         });
@@ -53,10 +42,10 @@ class App extends Component{
             .then((response) => {
                 if (response.status === 200) {
                     response.data.hits.map((item) => {
-                        this.setState({
-                            photos: this.state.photos.concat(item),
+                        return this.setState(state => {
+                            const photos = [...state.photos, item];
+                            return {photos}
                         });
-                        return null
                     });
                     this.setState({
                         page: this.state.page + 1
@@ -67,6 +56,18 @@ class App extends Component{
             .catch((error) => {
                 console.log(error);
             })
+    }
+
+    render () {
+        const {photos, isOpen, image, tag} = this.state;
+        return (
+            <div className="App">
+                <SearchForm onSubmit={this.onSubmit}/>
+                <Gallery photos={photos} isOpen={this.onModal}/>
+                {photos && <LoadMore loadMore={()=> this.onSubmit('', true)}/>}
+                {isOpen && <Modal image={image} tags={tag} isOpen={this.onModal}/>}
+            </div>
+        );
     }
 }
 

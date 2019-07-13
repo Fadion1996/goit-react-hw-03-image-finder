@@ -29,7 +29,7 @@ const GalleryItem = (props) => {
             </div>
             <button type="button"
                     className={styles["fullscreen-button"]}
-                    onClick={()=>props.isOpen(largeImageURL, tags)}>
+                    onClick={()=>props.isOpen(largeImageURL, tags, true)}>
                 <ZoomInOutlined/>
             </button>
         </li>
