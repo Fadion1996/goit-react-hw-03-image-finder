@@ -13,6 +13,7 @@
     justify-content: center;
     top: 0;
     background-color: rgba(0, 0, 0, 0.5);
+    overflow: hidden;
 }
 
 .overlay:after {
@@ -22,5 +23,5 @@
     right: 0.8rem;
     width: 2em;
     height: 2em;
-    background: url(/static/media/close.35a6ccb5.svg);
+    background: url("../../static/img/close.svg");
 }

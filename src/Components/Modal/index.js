@@ -15,11 +15,13 @@ export default class Modal extends Component {
     };
 
     componentDidMount(){
+        document.body.style.overflow = "hidden";
         document.addEventListener("keydown", this.escFunction, false);
         document.addEventListener("click", this.handleOutsideClick, false);
 
     }
     componentWillUnmount(){
+        document.body.style.overflow = "scroll";
         document.removeEventListener("keydown", this.escFunction, false);
         document.removeEventListener("click", this.handleOutsideClick, false);
     }
